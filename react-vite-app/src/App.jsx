@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Products from './pages/Products';
 import Cart from './pages/Cart';
 import SignIn from './pages/SignIn';
+import ServicesPage from './pages/ServicesPage';
 import CartModal from './components/CartModal';
 import UserAuthModal from './components/UserAuthModal';
 
@@ -19,6 +20,7 @@ function App() {
                     <Route path="/products" element={<Products />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/signin" element={<SignIn />} />
+                    <Route path="/services" element={<ServicesPage />} />
                 </Routes>
             </main>
             <Footer />

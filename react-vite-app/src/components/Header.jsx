@@ -26,7 +26,7 @@ function Header() {
   return (
     <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm">
       <Link to="/" className="navbar-brand d-flex align-items-center px-4 px-lg-5">
-        <img style={{ height: '5rem' }} src="/img/Edenaura_png-01logo.png" alt="EdenAura Logo" />
+        <img style={{ height: '5rem' }} src="img/Edenaura_png-01logo.png" alt="EdenAura Logo" />
       </Link>
       <button
         className="navbar-toggler me-4"
@@ -46,6 +46,9 @@ function Header() {
           </NavLink>
           <NavLink to="/products" className="nav-item nav-link">
             Products
+          </NavLink>
+          <NavLink to="/services" className="nav-item nav-link">
+            Services
           </NavLink>
           <NavLink to="/cart" className="nav-item nav-link position-relative">
             Cart

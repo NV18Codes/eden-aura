@@ -1,6 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 function Services() {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  const services = [
+    {
+      title: 'Landscaping',
+      description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.',
+      icon: '/img/icon/icon-3.png',
+      image: '/img/service-1.jpg',
+    },
+    {
+      title: 'Pruning plants',
+      description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.',
+      icon: '/img/icon/icon-6.png',
+      image: '/img/service-2.jpg',
+    },
+    {
+      title: 'Irrigation & Drainage',
+      description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.',
+      icon: '/img/icon/icon-5.png',
+      image: '/img/service-3.jpg',
+    },
+    {
+      title: 'Garden Maintenance',
+      description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.',
+      icon: '/img/icon/icon-4.png',
+      image: '/img/service-4.jpg',
+    },
+    {
+      title: 'Green Technology',
+      description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.',
+      icon: '/img/icon/icon-8.png',
+      image: '/img/service-5.jpg',
+    },
+    {
+      title: 'Urban Gardening',
+      description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.',
+      icon: '/img/icon/icon-2.png',
+      image: '/img/service-6.jpg',
+    },
+  ];
+
   return (
     <div className="container-xxl py-5">
       <div className="container">
@@ -9,96 +50,68 @@ function Services() {
           <h1 className="display-5 mb-5">Services That We Offer For You</h1>
         </div>
         <div className="row g-4">
-          <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div className="service-item rounded d-flex h-100">
-              <div className="service-img rounded">
-                <img className="img-fluid" src="/img/icon/icon-2.png" alt="" />
-              </div>
-              <div className="service-text rounded p-5">
-                <div className="btn-square rounded-circle mx-auto mb-3">
-                  <img className="img-fluid" src="/img/icon/icon-3.png" alt="Icon" />
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="col-lg-4 col-md-6 wow fadeInUp"
+              data-wow-delay={`${0.1 + index * 0.2}s`}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              <div
+                className="service-item rounded d-flex h-100 position-relative overflow-hidden shadow-sm"
+                style={{
+                  backgroundColor: hoveredIndex === index ? '#198754' : 'white',
+                  color: hoveredIndex === index ? 'white' : '#212529',
+                  transition: 'background-color 0.3s ease, color 0.3s ease, transform 0.3s ease',
+                  transform: hoveredIndex === index ? 'scale(1.05)' : 'scale(1)',
+                  cursor: 'pointer',
+                }}
+              >
+                <div className="service-img rounded position-relative" style={{ flex: '0 0 150px', overflow: 'hidden' }}>
+                  <img
+                    className="img-fluid position-absolute top-0 start-0 w-100 h-100"
+                    src={service.image}
+                    alt={service.title}
+                    style={{
+                      objectFit: 'cover',
+                      opacity: hoveredIndex === index ? 0.7 : 0,
+                      transition: 'opacity 0.3s ease',
+                      zIndex: 0,
+                    }}
+                  />
+                  <img
+                    className="img-fluid position-relative"
+                    src={service.icon}
+                    alt={`${service.title} icon`}
+                    style={{
+                      width: '90px',
+                      height: '90px',
+                      margin: '1rem',
+                      zIndex: 1,
+                      filter: hoveredIndex === index ? 'brightness(0) invert(1)' : 'none',
+                      transition: 'filter 0.3s ease',
+                    }}
+                  />
                 </div>
-                <h4 className="mb-3">Landscaping</h4>
-                <p className="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                <a className="btn btn-sm" href="#"><i className="fa fa-plus text-primary me-2"></i>Read More</a>
+                <div className="service-text rounded p-5" style={{ flex: 1, zIndex: 2 }}>
+                  <h4 className="mb-3">{service.title}</h4>
+                  <p className="mb-4">{service.description}</p>
+                  <a
+                    className="btn btn-sm btn-light"
+                    href="#"
+                    style={{
+                      color: hoveredIndex === index ? '#198754' : '#000',
+                      fontWeight: '600',
+                      textDecoration: 'none',
+                    }}
+                  >
+                    <i className="fa fa-plus text-success me-2"></i>Read More
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div className="service-item rounded d-flex h-100">
-              <div className="service-img rounded">
-                <img className="img-fluid" src="/img/service-2.jpg" alt="" />
-              </div>
-              <div className="service-text rounded p-5">
-                <div className="btn-square rounded-circle mx-auto mb-3">
-                  <img className="img-fluid" src="/img/icon/icon-6.png" alt="Icon" />
-                </div>
-                <h4 className="mb-3">Pruning plants</h4>
-                <p className="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                <a className="btn btn-sm" href="#"><i className="fa fa-plus text-primary me-2"></i>Read More</a>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div className="service-item rounded d-flex h-100">
-              <div className="service-img rounded">
-                <img className="img-fluid" src="/img/service-3.jpg" alt="" />
-              </div>
-              <div className="service-text rounded p-5">
-                <div className="btn-square rounded-circle mx-auto mb-3">
-                  <img className="img-fluid" src="/img/icon/icon-5.png" alt="Icon" />
-                </div>
-                <h4 className="mb-3">Irrigation & Drainage</h4>
-                <p className="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                <a className="btn btn-sm" href="#"><i className="fa fa-plus text-primary me-2"></i>Read More</a>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-            <div className="service-item rounded d-flex h-100">
-              <div className="service-img rounded">
-                <img className="img-fluid" src="/img/service-4.jpg" alt="" />
-              </div>
-              <div className="service-text rounded p-5">
-                <div className="btn-square rounded-circle mx-auto mb-3">
-                  <img className="img-fluid" src="/img/icon/icon-4.png" alt="Icon" />
-                </div>
-                <h4 className="mb-3">Garden Maintenance </h4>
-                <p className="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                <a className="btn btn-sm" href="#"><i className="fa fa-plus text-primary me-2"></i>Read More</a>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
-            <div className="service-item rounded d-flex h-100">
-              <div className="service-img rounded">
-                <img className="img-fluid" src="/img/service-5.jpg" alt="" />
-              </div>
-              <div className="service-text rounded p-5">
-                <div className="btn-square rounded-circle mx-auto mb-3">
-                  <img className="img-fluid" src="/img/icon/icon-8.png" alt="Icon" />
-                </div>
-                <h4 className="mb-3">Green Technology</h4>
-                <p className="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                <a className="btn btn-sm" href="#"><i className="fa fa-plus text-primary me-2"></i>Read More</a>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
-            <div className="service-item rounded d-flex h-100">
-              <div className="service-img rounded">
-                <img className="img-fluid" src="/img/service-6.jpg" alt="" />
-              </div>
-              <div className="service-text rounded p-5">
-                <div className="btn-square rounded-circle mx-auto mb-3">
-                  <img className="img-fluid" src="/img/icon/icon-2.png" alt="Icon" />
-                </div>
-                <h4 className="mb-3">Urban Gardening</h4>
-                <p className="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
-                <a className="btn btn-sm" href="#"><i className="fa fa-plus text-primary me-2"></i>Read More</a>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </div>

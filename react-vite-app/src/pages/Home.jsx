@@ -12,7 +12,9 @@ import Testimonial from '../components/Testimonial';
 function Home() {
   return (
     <div>
-      <Carousel />
+      <div>
+        <Carousel />
+      </div>
       <TopFeatures />
       <About />
       <Facts />
