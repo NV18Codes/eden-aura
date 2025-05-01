@@ -23,50 +23,105 @@ function Header() {
     return () => window.removeEventListener('storage', updateCartCount);
   }, []);
 
+  const navLinkClass = ({ isActive }) =>
+    "nav-item nav-link" + (isActive ? " active" : "");
+
   return (
-    <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm">
-      <Link to="/" className="navbar-brand d-flex align-items-center px-4 px-lg-5">
-        <img style={{ height: '5rem' }} src="img/Edenaura_png-01logo.png" alt="EdenAura Logo" />
-      </Link>
-      <button
-        className="navbar-toggler me-4"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarCollapse"
-        aria-controls="navbarCollapse"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarCollapse">
-        <div className="navbar-nav ms-auto p-4 p-lg-0">
-          <NavLink to="/" className="nav-item nav-link" end>
-            Home
-          </NavLink>
-          <NavLink to="/products" className="nav-item nav-link">
-            Products
-          </NavLink>
-          <NavLink to="/services" className="nav-item nav-link">
-            Services
-          </NavLink>
-          <NavLink to="/cart" className="nav-item nav-link position-relative">
-            Cart
-            {cartCount > 0 && (
-              <span
-                className="position-absolute badge rounded-pill bg-danger"
-                style={{ fontSize: '0.75rem', top: '1rem', right: '0.5rem' }}
-              >
-                {cartCount}
-              </span>
-            )}
-          </NavLink>
-          <NavLink to="/signin" className="nav-item nav-link">
-            <i className="fa fa-user"></i> Sign In
-          </NavLink>
+    <>
+      <style>{`
+        .nav-link {
+          margin-left: 1rem;
+          margin-right: 1rem;
+          transition: color 0.3s ease;
+          display: flex;
+          align-items: center;
+        }
+        .nav-link.active {
+          color: #348E38 !important;
+          font-weight: 600;
+        }
+        .cart-icon {
+          margin-right: 0.5rem;
+          font-size: 1.2rem;
+        }
+        .dropdown-menu {
+          min-width: 10rem;
+        }
+      `}</style>
+      <nav className="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm">
+        <Link to="/" className="navbar-brand d-flex align-items-center px-4 px-lg-5">
+          <img style={{ height: '5rem' }} src="img/Edenaura_png-01logo.png" alt="EdenAura Logo" />
+        </Link>
+        <button
+          className="navbar-toggler me-4"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarCollapse">
+            <div className="navbar-nav ms-auto p-4 p-lg-0">
+              <NavLink to="/" className={navLinkClass} end>
+                Home
+              </NavLink>
+              <NavLink to="/products" className={navLinkClass}>
+                Products
+              </NavLink>
+              <div className="nav-item dropdown">
+                <a
+                  href="#"
+                  className="nav-link dropdown-toggle"
+                  id="servicesDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Services
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="servicesDropdown">
+                  <li>
+                    <NavLink to="/services/landscaping" className="dropdown-item">
+                      Landscaping
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/services/workshop" className="dropdown-item">
+                      Workshop
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/services/gifting" className="dropdown-item">
+                      Gifting
+                    </NavLink>
+                  </li>
+                </ul>
+              </div>
+              <NavLink to="/contact" className={navLinkClass}>
+                Contact
+              </NavLink>
+              <NavLink to="/cart" className={({ isActive }) => navLinkClass({ isActive }) + " position-relative"}>
+                <i className="fa fa-shopping-cart cart-icon" aria-hidden="true"></i>
+                Cart
+                {cartCount > 0 && (
+                  <span
+                    className="position-absolute badge rounded-pill bg-danger"
+                    style={{ fontSize: '0.75rem', top: '1rem', right: '0.5rem' }}
+                  >
+                    {cartCount}
+                  </span>
+                )}
+              </NavLink>
+              <NavLink to="/signin" className={navLinkClass}>
+                <i className="fa fa-user"></i> Sign In
+              </NavLink>
+            </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 }
 

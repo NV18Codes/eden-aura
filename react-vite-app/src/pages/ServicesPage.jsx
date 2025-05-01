@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 function ServicesPage() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
   const services = [
     {
       title: 'Landscaping',
@@ -58,12 +56,66 @@ function ServicesPage() {
         </div>
       </div>
       {/* Page Header End */}
-
-      {/* Service Start */}
+      <style>{`
+        .service-item {
+          position: relative;
+          overflow: hidden;
+          cursor: pointer;
+        }
+        .service-img {
+          animation: fadeUp 1s ease forwards;
+          position: relative;
+          width: 100%;
+          height: 250px;
+          overflow: hidden;
+        }
+        .service-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.3s ease;
+        }
+        .service-item:hover .service-img img {
+          transform: translateY(-20px);
+        }
+        .service-text {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(25, 135, 84, 0.85);
+          color: white;
+          opacity: 0;
+          visibility: hidden;
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        .service-item:hover .service-text {
+          opacity: 1;
+          visibility: visible;
+        }
+        @keyframes fadeUp {
+          0% {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
       <div className="container-xxl py-5">
         <div className="container">
           <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
-            <p className="fs-5 fw-bold text-primary">Our Services</p>
+            <p className="text-success fs-5 fw-bold text-primary">Our Services</p>
             <h1 className="display-5 mb-5">Services That We Offer For You</h1>
           </div>
           <div className="row g-4">
@@ -72,58 +124,24 @@ function ServicesPage() {
                 key={index}
                 className="col-lg-4 col-md-6 wow fadeInUp"
                 data-wow-delay={`${0.1 + index * 0.2}s`}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
               >
-                <div
-                  className="service-item rounded d-flex h-100 position-relative overflow-hidden shadow-sm"
-                  style={{
-                    backgroundColor: hoveredIndex === index ? '#198754' : 'white',
-                    color: hoveredIndex === index ? 'white' : '#212529',
-                    transition: 'background-color 0.3s ease, color 0.3s ease, transform 0.3s ease',
-                    transform: hoveredIndex === index ? 'scale(1.05)' : 'scale(1)',
-                    cursor: 'pointer',
-                  }}
-                >
-                  <div className="service-img rounded position-relative" style={{ flex: '0 0 150px', overflow: 'hidden' }}>
-                    <img
-                      className="img-fluid position-absolute top-0 start-0 w-100 h-100"
-                      src={service.image}
-                      alt={service.title}
-                      style={{
-                        objectFit: 'cover',
-                        opacity: hoveredIndex === index ? 0.7 : 0,
-                        transition: 'opacity 0.3s ease',
-                        zIndex: 0,
-                      }}
-                    />
-                    <img
-                      className="img-fluid position-relative"
-                      src={service.icon}
-                      alt={`${service.title} icon`}
-                      style={{
-                        width: '90px',
-                        height: '90px',
-                        margin: '1rem',
-                        zIndex: 1,
-                        filter: hoveredIndex === index ? 'brightness(0) invert(1)' : 'none',
-                        transition: 'filter 0.3s ease',
-                      }}
-                    />
+                <div className="service-item rounded shadow-sm">
+                  <div className="service-img rounded">
+                    <img src={service.image} alt={service.title} />
                   </div>
-                  <div className="service-text rounded p-5" style={{ flex: 1, zIndex: 2 }}>
+                  <div className="service-text rounded">
                     <h4 className="mb-3">{service.title}</h4>
                     <p className="mb-4">{service.description}</p>
                     <a
-                      className="btn btn-sm btn-light"
+                      className="text-success btn btn-sm btn-light"
                       href="#"
                       style={{
-                        color: hoveredIndex === index ? '#198754' : '#000',
+                        color: '#fff',
                         fontWeight: '600',
                         textDecoration: 'none',
                       }}
                     >
-                      <i className="fa fa-plus text-success me-2"></i>Read More
+                      <i className="text-success fa fa-plus me-2"></i>Read More
                     </a>
                   </div>
                 </div>
@@ -132,10 +150,6 @@ function ServicesPage() {
           </div>
         </div>
       </div>
-      {/* Service End */}
-
-      {/* Footer Placeholder */}
-      <div id="footer-placeholder"></div>
     </>
   );
 }
