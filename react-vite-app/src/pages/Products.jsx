@@ -61,9 +61,7 @@ function Products() {
 
   return (
     <section className="container my-5">
-      <div className="d-flex justify-content-end mb-3">
-        <a href="/cart" className="btn btn-primary">View Cart</a>
-      </div>
+    
       <h2 className="mb-4 text-center">Our Products</h2>
       <div className="row">
         {productsData.map((product) => (

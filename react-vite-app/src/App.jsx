@@ -10,6 +10,12 @@ import ServicesPage from './pages/ServicesPage';
 import CartModal from './components/CartModal';
 import UserAuthModal from './components/UserAuthModal';
 
+// Import the service components
+import Landscaping from './components/landscaping';
+import Workshop from './components/Workshop';
+import Gifting from './components/Gifting';
+import Contact from './pages/Contact';
+
 function App() {
     return (
         <Router>
@@ -21,6 +27,10 @@ function App() {
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/signin" element={<SignIn />} />
                     <Route path="/services" element={<ServicesPage />} />
+                    <Route path="/services/landscaping" element={<Landscaping />} />
+                    <Route path="/services/workshop" element={<Workshop />} />
+                    <Route path="/services/gifting" element={<Gifting />} />
+                    <Route path="/contact" element={<Contact />} />
                 </Routes>
             </main>
             <Footer />

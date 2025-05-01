@@ -10,7 +10,7 @@ function TopFeatures() {
             <div className="bg-white shadow d-flex align-items-center h-100 px-5 rounded-4" style={{ minHeight: '160px', cursor: 'pointer', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
               <div className="d-flex">
                 <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light d-flex align-items-center justify-content-center" aria-hidden="true" style={{ width: '60px', height: '60px' }}>
-                  <i className="fa fa-times text-primary fs-3"></i>
+                  <i className="text-success fa fa-times text-primary fs-3"></i>
                 </div>
                 <div className="ps-3">
                   <h4 className="fw-bold">No Hidden Costs</h4>
@@ -25,7 +25,7 @@ function TopFeatures() {
             <div className="bg-white shadow d-flex align-items-center h-100 px-5 rounded-4" style={{ minHeight: '160px', cursor: 'pointer', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
               <div className="d-flex">
                 <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light d-flex align-items-center justify-content-center" aria-hidden="true" style={{ width: '60px', height: '60px' }}>
-                  <i className="fa fa-users text-primary fs-3"></i>
+                  <i className="text-success fa fa-users text-primary fs-3"></i>
                 </div>
                 <div className="ps-3">
                   <h4 className="fw-bold">Dedicated Team</h4>
@@ -40,7 +40,7 @@ function TopFeatures() {
             <div className="bg-white shadow d-flex align-items-center h-100 px-5 rounded-4" style={{ minHeight: '160px', cursor: 'pointer', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
               <div className="d-flex">
                 <div className="flex-shrink-0 btn-lg-square rounded-circle bg-light d-flex align-items-center justify-content-center" aria-hidden="true" style={{ width: '60px', height: '60px' }}>
-                  <i className="fa fa-phone text-primary fs-3"></i>
+                  <i className="text-success fa fa-phone text-primary fs-3"></i>
                 </div>
                 <div className="ps-3">
                   <h4 className="fw-bold">Available 24/7</h4>

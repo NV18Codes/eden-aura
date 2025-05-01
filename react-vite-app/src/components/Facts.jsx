@@ -1,26 +1,65 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Facts() {
+  const targets = [1234, 1234, 1234, 1234];
+  const duration = 4500;
+  const [counts, setCounts] = useState([0, 0, 0, 0]);
+
+  useEffect(() => {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = timestamp - startTimestamp;
+      const newCounts = targets.map((target) =>
+        Math.min(Math.floor((progress / duration) * target), target)
+      );
+      setCounts(newCounts);
+      if (progress < duration) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }, []);
+
   return (
-    <div className="container-fluid facts my-5 py-5" data-parallax="scroll" data-image-src="/img/carousel-1.jpg">
-      <div className="container py-5">
+    <div
+      className="container-fluid facts my-5 py-5"
+      style={{
+        position: 'relative',
+        backgroundImage: "url('/background.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        zIndex: 1,
+      }}
+    >
+      {/* Dark overlay */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          height: '100%',
+          width: '100%',
+          backgroundColor: '#0F4229',
+          zIndex: 2,
+        }}
+      />
+
+      {/* Content above overlay */}
+      <div className="container py-5" style={{ position: 'relative', zIndex: 3 }}>
         <div className="row g-5">
-          <div className="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
-            <h1 className="display-4 text-white" data-toggle="counter-up">1234</h1>
-            <span className="fs-5 fw-semi-bold text-light">Happy Clients</span>
-          </div>
-          <div className="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
-            <h1 className="display-4 text-white" data-toggle="counter-up">1234</h1>
-            <span className="fs-5 fw-semi-bold text-light">Garden Complated</span>
-          </div>
-          <div className="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
-            <h1 className="display-4 text-white" data-toggle="counter-up">1234</h1>
-            <span className="fs-5 fw-semi-bold text-light">Dedicated Staff</span>
-          </div>
-          <div className="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
-            <h1 className="display-4 text-white" data-toggle="counter-up">1234</h1>
-            <span className="fs-5 fw-semi-bold text-light">Awards Achieved</span>
-          </div>
+          {counts.map((count, index) => (
+            <div key={index} className="col-sm-6 col-lg-3 text-center">
+              <h1 className="display-4 text-white">{count}</h1>
+              <span className="fs-5 fw-semibold text-light">
+                {index === 0 && 'Happy Clients'}
+                {index === 1 && 'Garden Completed'}
+                {index === 2 && 'Dedicated Staff'}
+                {index === 3 && 'Awards Achieved'}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
     </div>
