@@ -29,25 +29,33 @@ function Footer() {
             <h5 className="text-uppercase text-white">Contact</h5>
             <ul className="list-unstyled mb-0">
               <li><i class="fa fa-envelope me-3"></i>
-                        <a href="mailto:Edenaurraea@gmail.com"
-                            class="text-light text-decoration-none">Edenaurraea@gmail.com</a></li>
+                <a href="mailto:Edenaurraea@gmail.com"
+                  class="text-light text-decoration-none">Edenaurraea@gmail.com</a></li>
               <li>Phone: 7204450133</li>
               <li>Phone: 8778108278</li>
               <li>Address:6th Main Appareddy Palya, Near Yallamma Templeallamma Temple
-Indiranagar, Bengaluru.
-</li>
-<li>District: Bengaluru Urban</li>
+                Indiranagar, Bengaluru.
+              </li>
+              <li>District: Bengaluru Urban</li>
             </ul>
           </div>
         </div>
       </div>
-
-      <div
-        className="text-center p-3"
-        style={{ backgroundColor: '#0F4229' }} // Slightly darker bottom bar
-      >
-        &copy; {new Date().getFullYear()} EdenAura. All rights reserved.
+      <div className="d-flex justify-content-between text-center p-3" style={{ backgroundColor: '#0F4229' }}>
+        <div
+          className="text-center p-3"
+          style={{ backgroundColor: '#0F4229' }} // Slightly darker bottom bar
+        >
+          &copy; {new Date().getFullYear()} EdenAura. All rights reserved.
+        </div>
+        <div
+          className="text-center p-3"
+          style={{ backgroundColor: '#0F4229' }} // Slightly darker bottom bar
+        >
+          &copy; {new Date().getFullYear()} Created by Aspiron Khuze Technologies.
+        </div>
       </div>
+
     </footer>
   );
 }
