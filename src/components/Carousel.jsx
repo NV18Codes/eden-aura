@@ -18,7 +18,7 @@ function Carousel() {
         <div className="carousel-item" style={{ height: '100vh', backgroundImage: 'url(/img/carousel-2.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
           <div className="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
             <h1 className="display-1">Creative Workshops</h1>
-            <p className="lead">Join our workshops to learn and create amazing projects.</p>
+            <p className="lead">Join our workshops to learn and create amazing projects towards nature.</p>
           </div>
         </div>
         <div className="carousel-item" style={{ height: '100vh', backgroundImage: 'url(/img/carousel-3.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
