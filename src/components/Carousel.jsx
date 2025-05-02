@@ -1,15 +1,16 @@
 import React from 'react';
+import './Carousel.css';
 
 function Carousel() {
   return (
-    <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" style={{ height: '100vh', width: '100%' }}>
+<div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel" style={{ height: '100vh', width: '100%' }}>
       <div className="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
       </div>
       <div className="carousel-inner" style={{ height: '100vh' }}>
-        <div className="carousel-item active" style={{ height: '100vh', backgroundImage: 'url(/img/carousel-1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+<div className="carousel-item active" style={{ height: '100vh', backgroundImage: 'url(/img/carousel-1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
           <div className="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
             <h1 className="display-1">Welcome to EdenAura</h1>
             <p className="lead">Experience the beauty of nature with our expert landscaping services.</p>
