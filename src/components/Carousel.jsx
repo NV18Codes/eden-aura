@@ -1,5 +1,4 @@
 import React from 'react';
-import './Carousel.css';
 
 function Carousel() {
   return (
@@ -22,7 +21,7 @@ function Carousel() {
             <p className="lead">Join our workshops to learn and create amazing projects towards nature.</p>
           </div>
         </div>
-        <div className="carousel-item" style={{ height: '100vh', backgroundImage: 'url(/img/carousel-3.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="carousel-item" style={{ height: '100vh', backgroundImage: 'url(/img/carousel-1.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
           <div className="carousel-caption d-flex flex-column justify-content-center align-items-center h-100">
             <h1 className="display-1">Unique Gifting Ideas</h1>
             <p className="lead">Discover perfect gifts for your loved ones.</p>
