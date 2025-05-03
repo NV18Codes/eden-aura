@@ -13,7 +13,7 @@ function About() {
           {/* Main About Text */}
           <div className="col-lg-6 col-md-7 wow fadeInUp" data-wow-delay="0.3s">
             <h1 className="text-success display-1 text-primary mb-0" >25</h1>
-            <p className="text-success text-primary mb-4">Years of Experience</p>
+            <p className="text-success text-primary mb-4">Years of Great Experience</p>
             <h1 className="display-5 mb-4">Transforming Homes Into Green Sanctuaries</h1>
             <p className="mb-4">
               With over two decades of experience, we've been helping clients reimagine their outdoor spaces
