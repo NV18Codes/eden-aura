@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 function Header() {
   const [cartCount, setCartCount] = useState(0);
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     function updateCartCount() {
@@ -21,6 +23,20 @@ function Header() {
 
     window.addEventListener('storage', updateCartCount);
     return () => window.removeEventListener('storage', updateCartCount);
+  }, []);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const { data } = await axios.get('/api/v1/category/getAll-category');
+        if (data.success) {
+          setCategories(data.categories);
+        }
+      } catch (error) {
+        console.error('Failed to fetch categories', error);
+      }
+    };
+    fetchCategories();
   }, []);
 
   const navLinkClass = ({ isActive }) =>
@@ -71,6 +87,33 @@ function Header() {
               <NavLink to="/products" className={navLinkClass}>
                 Products
               </NavLink>
+              <div className="nav-item dropdown">
+                <a
+                  href="#"
+                  className="nav-link dropdown-toggle"
+                  id="categoriesDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Categories
+                </a>
+                <ul className="dropdown-menu" aria-labelledby="categoriesDropdown">
+                  {categories.length === 0 && (
+                    <li className="dropdown-item text-muted">Loading...</li>
+                  )}
+                  {categories.map((category) => (
+                    <li key={category._id}>
+                      <NavLink
+                        to={`/products/category/${category.name.toLowerCase().replace(/\s+/g, '-')}`}
+                        className="dropdown-item"
+                      >
+                        {category.name}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
               <div className="nav-item dropdown">
                 <a
                   href="#"

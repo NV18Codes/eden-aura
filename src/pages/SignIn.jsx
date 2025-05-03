@@ -1,57 +1,88 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import toast from 'react-hot-toast';
 
 function SignIn() {
   const [isSignUp, setIsSignUp] = useState(false);
-  const [signInMobile, setSignInMobile] = useState('');
+  const [signInIdentifier, setSignInIdentifier] = useState(''); // mobile or email
   const [signInPassword, setSignInPassword] = useState('');
-  const [signUpUsername, setSignUpUsername] = useState('');
+  const [signUpName, setSignUpName] = useState('');
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpMobile, setSignUpMobile] = useState('');
+  const [signUpAddress, setSignUpAddress] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
   const [signUpConfirmPassword, setSignUpConfirmPassword] = useState('');
-  const [signInError, setSignInError] = useState(false);
+  const [signInError, setSignInError] = useState('');
   const [signUpError, setSignUpError] = useState('');
 
   const toggleForm = () => {
     setIsSignUp(!isSignUp);
-    setSignInError(false);
+    setSignInError('');
     setSignUpError('');
   };
 
-  const handleSignInSubmit = (e) => {
+  const handleSignInSubmit = async (e) => {
     e.preventDefault();
-    // Simulate API call
-    if (signInMobile && signInPassword) {
-      // For demo, assume success
-      localStorage.setItem('isLoggedIn', 'true');
-      alert('Signed in successfully!');
-      setSignInMobile('');
-      setSignInPassword('');
-    } else {
-      setSignInError(true);
+    setSignInError('');
+    if (!signInIdentifier || !signInPassword) {
+      setSignInError('Please enter email/mobile and password');
+      return;
+    }
+    try {
+      const { data } = await axios.post('/api/v1/auth/login', {
+        identifier: signInIdentifier,
+        password: signInPassword,
+      });
+      if (data.success) {
+        localStorage.setItem('user', JSON.stringify(data.user));
+        toast.success('Signed in successfully!');
+        setSignInIdentifier('');
+        setSignInPassword('');
+        // Additional logic to allow checkout can be added here
+      } else {
+        setSignInError(data.message || 'Invalid credentials');
+      }
+    } catch (error) {
+      setSignInError(error.response?.data?.message || 'Login failed');
     }
   };
 
-  const handleSignUpSubmit = (e) => {
+  const handleSignUpSubmit = async (e) => {
     e.preventDefault();
-    // Simulate API call
+    setSignUpError('');
     if (
-      signUpUsername &&
-      signUpEmail &&
-      signUpMobile &&
-      signUpPassword &&
-      signUpPassword === signUpConfirmPassword
+      !signUpName ||
+      !signUpEmail ||
+      !signUpMobile ||
+      !signUpAddress ||
+      !signUpPassword ||
+      signUpPassword !== signUpConfirmPassword
     ) {
-      // For demo, assume success
-      alert('Account created successfully!');
-      toggleForm();
-      setSignUpUsername('');
-      setSignUpEmail('');
-      setSignUpMobile('');
-      setSignUpPassword('');
-      setSignUpConfirmPassword('');
-    } else {
       setSignUpError('Please fill all fields correctly and ensure passwords match.');
+      return;
+    }
+    try {
+      const { data } = await axios.post('/api/v1/auth/register', {
+        name: signUpName,
+        email: signUpEmail,
+        mobile: signUpMobile,
+        address: signUpAddress,
+        password: signUpPassword,
+      });
+      if (data.success) {
+        toast.success('Account created successfully!');
+        toggleForm();
+        setSignUpName('');
+        setSignUpEmail('');
+        setSignUpMobile('');
+        setSignUpAddress('');
+        setSignUpPassword('');
+        setSignUpConfirmPassword('');
+      } else {
+        setSignUpError(data.message || 'Registration failed');
+      }
+    } catch (error) {
+      setSignUpError(error.response?.data?.message || 'Registration failed');
     }
   };
 
@@ -61,16 +92,14 @@ function SignIn() {
       {!isSignUp ? (
         <form onSubmit={handleSignInSubmit}>
           <div className="mb-3">
-            <label htmlFor="signInMobile" className="form-label">Mobile Number</label>
+            <label htmlFor="signInIdentifier" className="form-label">Email or Mobile Number</label>
             <input
-              type="tel"
+              type="text"
               className="form-control"
-              id="signInMobile"
-              pattern="[0-9]{10}"
-              maxLength="10"
-              placeholder="e.g. 9876543210"
-              value={signInMobile}
-              onChange={(e) => setSignInMobile(e.target.value)}
+              id="signInIdentifier"
+              placeholder="Enter email or mobile number"
+              value={signInIdentifier}
+              onChange={(e) => setSignInIdentifier(e.target.value)}
               required
             />
           </div>
@@ -85,7 +114,7 @@ function SignIn() {
               required
             />
           </div>
-          {signInError && <div className="text-danger mb-3">Invalid mobile number or password.</div>}
+          {signInError && <div className="text-danger mb-3">{signInError}</div>}
           <button type="submit" className="btn btn-primary w-100">Login</button>
           <div className="mt-3 text-center">
             <span>New user? <button type="button" className="btn btn-link p-0" onClick={toggleForm}>Create account</button></span>
@@ -94,13 +123,13 @@ function SignIn() {
       ) : (
         <form onSubmit={handleSignUpSubmit}>
           <div className="mb-3">
-            <label htmlFor="signUpUsername" className="form-label">Username</label>
+            <label htmlFor="signUpName" className="form-label">Name</label>
             <input
               type="text"
               className="form-control"
-              id="signUpUsername"
-              value={signUpUsername}
-              onChange={(e) => setSignUpUsername(e.target.value)}
+              id="signUpName"
+              value={signUpName}
+              onChange={(e) => setSignUpName(e.target.value)}
               required
             />
           </div>
@@ -125,6 +154,16 @@ function SignIn() {
               maxLength="10"
               value={signUpMobile}
               onChange={(e) => setSignUpMobile(e.target.value)}
+              required
+            />
+          </div>
+          <div className="mb-3">
+            <label htmlFor="signUpAddress" className="form-label">Address</label>
+            <textarea
+              className="form-control"
+              id="signUpAddress"
+              value={signUpAddress}
+              onChange={(e) => setSignUpAddress(e.target.value)}
               required
             />
           </div>
