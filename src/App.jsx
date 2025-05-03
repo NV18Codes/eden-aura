@@ -15,6 +15,10 @@ import Landscaping from './components/landscaping';
 import Workshop from './components/Workshop';
 import Gifting from './components/Gifting';
 import Contact from './pages/Contact';
+import AdminLayout from './pages/admin/AdminLayout';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import CreateCategory from './pages/admin/CreateCategory';
+import CreateProduct from './pages/admin/CreateProduct';
 
 function App() {
     return (
@@ -31,6 +35,11 @@ function App() {
                     <Route path="/services/workshop" element={<Workshop />} />
                     <Route path="/services/gifting" element={<Gifting />} />
                     <Route path="/contact" element={<Contact />} />
+                    <Route path="/admin" element={<AdminLayout />}>
+                        <Route path="dashboard" element={<AdminDashboard />} />
+                        <Route path="create-category" element={<CreateCategory />} />
+                        <Route path="create-product" element={<CreateProduct />} />
+                    </Route>
                 </Routes>
             </main>
             <Footer />
