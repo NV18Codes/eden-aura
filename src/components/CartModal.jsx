@@ -14,7 +14,7 @@ function CartModal() {
               {/* Cart items will be dynamically inserted here */}
             </div>
             <div className="mt-3 text-end">
-              <strong>Total: $<span id="cartTotal">0.00</span></strong>
+              <strong>Total: ₹<span id="cartTotal">0.00</span></strong>
             </div>
           </div>
           <div className="modal-footer">

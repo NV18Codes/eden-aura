@@ -5,6 +5,36 @@ import axios from 'axios';
 function Header() {
   const [cartCount, setCartCount] = useState(0);
   const [categories, setCategories] = useState([]);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    console.log('Header useEffect storedUser:', storedUser);
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+    function handleStorageChange() {
+      const updatedUser = localStorage.getItem('user');
+      console.log('Header storage event updatedUser:', updatedUser);
+      if (updatedUser) {
+        setUser(JSON.parse(updatedUser));
+      } else {
+        setUser(null);
+      }
+    }
+    window.addEventListener('storage', handleStorageChange);
+
+    // Poll localStorage every 1 second to detect changes in same tab
+    const intervalId = setInterval(() => {
+      const currentUser = localStorage.getItem('user');
+      setUser(currentUser ? JSON.parse(currentUser) : null);
+    }, 1000);
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      clearInterval(intervalId);
+    };
+  }, []);
 
   useEffect(() => {
     function updateCartCount() {
@@ -158,9 +188,15 @@ function Header() {
                   </span>
                 )}
               </NavLink>
-              <NavLink to="/signin" className={navLinkClass}>
-                <i className="fa fa-user"></i> Sign In
-              </NavLink>
+              {user ? (
+                <NavLink to="/userinfo" className={navLinkClass} end>
+                  <i className="fa fa-user"></i> Profile
+                </NavLink>
+              ) : (
+                <NavLink to="/signin" className={navLinkClass} end>
+                  <i className="fa fa-user"></i> Sign In
+                </NavLink>
+              )}
             </div>
         </div>
       </nav>

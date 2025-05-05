@@ -15,6 +15,9 @@ import Landscaping from './components/landscaping';
 import Workshop from './components/Workshop';
 import Gifting from './components/Gifting';
 import Contact from './pages/Contact';
+import Checkout from './pages/Checkout';
+import UserDashboard from './pages/UserDashboard';
+import UserInfo from './pages/UserInfo';
 
 function App() {
     return (
@@ -26,6 +29,10 @@ function App() {
                     <Route path="/products" element={<Products />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/signin" element={<SignIn />} />
+                    <Route path="/checkout" element={<Checkout />} />
+                    <Route path="/dashboard" element={<UserDashboard />} />
+                    <Route path="/userinfo" element={<UserInfo />} />
+                    {/* Removed admin-dashboard route because AdminDashboard component is missing */}
                     <Route path="/services" element={<ServicesPage />} />
                     <Route path="/services/landscaping" element={<Landscaping />} />
                     <Route path="/services/workshop" element={<Workshop />} />

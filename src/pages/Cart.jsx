@@ -35,12 +35,12 @@ function Cart() {
   }, [cartItems]);
 
   const handleCheckout = () => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    if (!isLoggedIn) {
+    const user = localStorage.getItem('user');
+    if (!user) {
       alert('Please sign in to proceed to checkout.');
       navigate('/signin');
     } else {
-      navigate('/payment');
+      navigate('/checkout');
     }
   };
 
@@ -67,7 +67,7 @@ function Cart() {
         )}
       </div>
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h4>Total: ${total}</h4>
+      <h4>Total: ₹{total}</h4>
       </div>
       <div className="d-flex gap-3">
         <Link to="/products" className="btn btn-secondary">Continue Shopping</Link>
