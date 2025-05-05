@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 
 const productsData = [
-  { id: 1, name: 'Product A', price: '$29.99' },
-  { id: 2, name: 'Product B', price: '$39.99' },
-  { id: 3, name: 'Product C', price: '$24.99' },
-  { id: 4, name: 'Product D', price: '$49.99' },
-  { id: 5, name: 'Product E', price: '$19.99' },
-  { id: 6, name: 'Product F', price: '$59.99' },
-  { id: 7, name: 'Product G', price: '$34.99' },
-  { id: 8, name: 'Product H', price: '$44.99' },
-  { id: 9, name: 'Product I', price: '$29.99' },
-  { id: 10, name: 'Product J', price: '$39.99' },
-  { id: 11, name: 'Product K', price: '$24.99' },
-  { id: 12, name: 'Product L', price: '$49.99' },
-  { id: 13, name: 'Product M', price: '$19.99' },
-  { id: 14, name: 'Product N', price: '$59.99' },
-  { id: 15, name: 'Product O', price: '$34.99' },
-  { id: 16, name: 'Product P', price: '$44.99' }
+  { id: 1, name: 'Product A', price: '₹29.99' },
+  { id: 2, name: 'Product B', price: '₹39.99' },
+  { id: 3, name: 'Product C', price: '₹24.99' },
+  { id: 4, name: 'Product D', price: '₹49.99' },
+  { id: 5, name: 'Product E', price: '₹19.99' },
+  { id: 6, name: 'Product F', price: '₹59.99' },
+  { id: 7, name: 'Product G', price: '₹34.99' },
+  { id: 8, name: 'Product H', price: '₹44.99' },
+  { id: 9, name: 'Product I', price: '₹29.99' },
+  { id: 10, name: 'Product J', price: '₹39.99' },
+  { id: 11, name: 'Product K', price: '₹24.99' },
+  { id: 12, name: 'Product L', price: '₹49.99' },
+  { id: 13, name: 'Product M', price: '₹19.99' },
+  { id: 14, name: 'Product N', price: '₹59.99' },
+  { id: 15, name: 'Product O', price: '₹34.99' },
+  { id: 16, name: 'Product P', price: '₹44.99' }
 ];
 
 function Products() {
